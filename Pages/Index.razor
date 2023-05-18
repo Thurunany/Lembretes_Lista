@@ -1,0 +1,103 @@
+﻿@page "/"
+
+<PageTitle>Lista</PageTitle>
+
+<div class="lista-container">
+    <div class="form-inline"> 
+        <div class="form-group row lista-input">
+            <label class="col-sm-2 col-form-label"> Nota: </label>
+            <div class="col-sm-10">
+                <input type="text"  @bind="listaInputTexto" class="form-control" placeholder="Escreva seu Lembrete">
+            </div>
+        </div> <p></p>
+        
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Data:</label>
+            <div class="col-sm-10">
+            <input type="date" @bind="listaInputData" class="form-control" placeholder="No formato dd/mm/yyyy">
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <div class="form-group column">
+            <button  @onclick="CriarLista"  class="btn btn-primary my-1 float-end">Criar</button>
+            </div>
+        </div>
+        <p></p>
+    </div>
+                       
+    <table class="table table-bordered table-responsive-sm">
+        <thead>
+            <tr>
+            <th scope="col w-75">Lembrete</th>
+            <th scope="col">Data</th>
+            <th scope="col">Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < LembreteLista.Count; i++) {
+            var index = i;
+            var item = LembreteLista[i];
+            <tr>
+            <td>
+                <div class="lista-lembrete__texto">  
+                    @item.Texto        
+                </div>
+            </td>
+            <td>
+                <div class="lista-lembrete__data">  
+                    @item.Data
+                </div>
+            </td>
+            <td class="align-items-center">
+                <button class="lista-lembrete__fechar btn btn-light" @onclick="@(() => RemoveLembrete(index))">
+                    &times;
+                </button>
+            </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+        
+
+  
+
+</div>
+
+
+@code{
+    
+    public class Lista {
+        public string Texto { get; set; }
+        public DateOnly Data { get; set; }
+    }
+
+    public string listaInputTexto;
+    public DateTime listaInputData;
+    
+
+    public List<Lista> LembreteLista = new List<Lista>();
+
+    public void CriarLista(){
+        var dateNow = DateOnly.FromDateTime(listaInputData);
+         if (string.IsNullOrWhiteSpace(listaInputTexto)){
+            Console.WriteLine("Lembrete inválido. O lembrete não será adicionado.");
+            return;
+        } else
+        if (listaInputData.Date < DateTime.Today){
+            Console.WriteLine("A data do lembrete deve estar no futuro. O lembrete não será adicionado.");
+            return;
+        } else {
+            LembreteLista.Add(new Lista{
+                Texto = listaInputTexto,
+                Data = dateNow
+            });
+            listaInputTexto = "";
+        }
+    }
+    public void RemoveLembrete(int index){
+        LembreteLista.RemoveAt(index);
+    }
+
+
+}
