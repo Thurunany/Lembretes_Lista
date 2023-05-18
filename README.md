@@ -1,6 +1,6 @@
 # Lembretes
 
-Este é um simples programa de gerenciamento de lembretes, onde você pode adicionar lembretes com nome e data, além de poder deletar lembretes existentes. Os lembretes são exibidos em ordem cronológica, agrupados por dia.
+Este é um simples programa de gerenciamento de lembretes, onde você pode adicionar lembretes com nome e data, além de poder deletar lembretes existentes. Os lembretes são exibidos em uma tabela, dividos por linhas.
 
 ## Requisitos
 
@@ -23,9 +23,9 @@ Este é um simples programa de gerenciamento de lembretes, onde você pode adici
 
 ## Funcionalidades
 
-- Adicionar um lembrete: Você pode adicionar um novo lembrete informando o nome e a data. Os campos serão validados para garantir que o nome esteja preenchido e que a data seja válida e esteja no futuro.
+- Adicionar um lembrete: Você pode adicionar um novo lembrete informando o nome e a data. Os campos serão VALIDADOS para garantir que o nome esteja preenchido e que a data seja válida e esteja no futuro (então aceita apenas datas no futuro e descrições não vazias).
 - Deletar um lembrete: Você pode deletar um lembrete existente selecionando-o a partir de sua posição na lista.
-- Exibição dos lembretes: Os lembretes são exibidos em ordem cronológica, agrupados por dia. Cada lembrete é exibido com seu nome.
+- Exibição dos lembretes: Cada lembrete é exibido com seu nome.
 
 ## Contribuição
 
